@@ -48,7 +48,7 @@ public class Array<E> {
 		add (0, e);
 	}
 
-	//添加：向index位置添加元素e。
+	//添加：向index位置添加元素e。 O(n/2)=O(n) 添加操作总的来说是O(n) 一般来说是最坏情况
 	public void add(int index, E e) {
 		if (index < 0 || index > size) {
 			throw new IllegalArgumentException ("添加失败，添加位置有误！");
@@ -71,7 +71,7 @@ public class Array<E> {
 		data=newData;
 	}
 
-	//获取指定元素
+	//获取指定元素 O(1)
 	E get(int index) {
 		if (index < 0 || index >= size) {
 			throw new IllegalArgumentException ("查找失败，查找位置有误！");
@@ -79,7 +79,7 @@ public class Array<E> {
 		return data[index];
 	}
 
-	//修改元素
+	//修改元素 O(1)
 	void set(int index, E e) {
 		if (index < 0 || index >= size) {
 			throw new IllegalArgumentException ("查找失败，查找位置有误！");
@@ -87,7 +87,7 @@ public class Array<E> {
 		data[index] = e;
 	}
 
-	//是否包含e元素
+	//是否包含e元素 O(n)
 	public boolean contains(E e) {
 		for (int i = 0; i < size; i++) {
 			if (data[i].equals (e)) {
@@ -97,7 +97,7 @@ public class Array<E> {
 		return false;
 	}
 
-	//查找元素，返回索引
+	//查找元素，返回索引 O(n)
 	public int find(E e) {
 		for (int i = 0; i < size; i++) {
 			if (data[i].equals (e)) {
@@ -124,17 +124,17 @@ public class Array<E> {
 		return ret;
 	}
 
-	//删除第一个元素返回删除的元素
+	//删除第一个元素返回删除的元素 O(n)
 	public E removeFirst() {
 		return remove (0);
 	}
 
-	//删除最后一个元素返回删除的元素
+	//删除最后一个元素返回删除的元素 O(1)
 	public E removeLast() {
 		return remove (size - 1);
 	}
 
-	//删除指定的e元素  removeAllElement  findAll
+	//删除指定的e元素  removeAllElement  findAll  O(n)
 	public void removeElement(E e) {
 		//只删除了第一个e
 		int index = find (e);
