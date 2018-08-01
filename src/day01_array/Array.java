@@ -54,7 +54,7 @@ public class Array<E> {
 			throw new IllegalArgumentException ("添加失败，添加位置有误！");
 		}
 		if (size == data.length) {
-			resize(2*data.length);//ArrayList是1.5倍
+			resize (2 * data.length);//ArrayList是1.5倍
 		}
 		for (int i = size - 1; i >= index; i--) {
 			data[i + 1] = data[i];
@@ -64,11 +64,11 @@ public class Array<E> {
 	}
 
 	public void resize(int newCapacity) {
-		E[] newData=(E[])new Object[newCapacity];
+		E[] newData = (E[]) new Object[newCapacity];
 		for (int i = 0; i < size; i++) {
-			newData[i]=data[i];
+			newData[i] = data[i];
 		}
-		data=newData;
+		data = newData;
 	}
 
 	//获取指定元素 O(1)
@@ -118,8 +118,8 @@ public class Array<E> {
 		}
 		size--;
 		data[size] = null;  //loitering objects  !=memory leak(内存泄漏)
-		if(size==data.length/2){
-			resize (data.length/2);
+		if (size == data.length / 4 && data.length != 0) {
+			resize (data.length / 2);
 		}
 		return ret;
 	}
@@ -144,8 +144,6 @@ public class Array<E> {
 	}
 
 	//动态数组
-
-
 
 	@Override
 	public String toString() {
