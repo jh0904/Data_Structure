@@ -72,7 +72,7 @@ public class Array<E> {
 	}
 
 	//获取指定元素 O(1)
-	E get(int index) {
+	public E get(int index) {
 		if (index < 0 || index >= size) {
 			throw new IllegalArgumentException ("查找失败，查找位置有误！");
 		}
@@ -80,7 +80,7 @@ public class Array<E> {
 	}
 
 	//修改元素 O(1)
-	void set(int index, E e) {
+	public  void set(int index, E e) {
 		if (index < 0 || index >= size) {
 			throw new IllegalArgumentException ("查找失败，查找位置有误！");
 		}
@@ -158,6 +158,15 @@ public class Array<E> {
 		}
 		res.append (']');
 		return res.toString ();
+	}
+
+
+	public E getLast(){
+		return  get (size-1);
+	}
+
+	public E getFirst(){
+		return get(0);
 	}
 
 }
