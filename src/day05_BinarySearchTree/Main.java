@@ -24,6 +24,8 @@ public class Main {
 		System.out.println ("----------------------");*/
 		//bst.preOrderNR ();
 		//System.out.println(bst);
-		bst.levelOrder ();
+		//bst.levelOrder ();
+		bst.minimum ();
+		bst.maximum ();
 	}
 }
