@@ -1,5 +1,9 @@
 package day05_BinarySearchTree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
 /**
  * day05_BinarySearchTree
  *
@@ -107,13 +111,29 @@ public class BST<E extends Comparable<E>> {
 		preOrder (node.right);
 	}
 
+	//前序遍历的非递归算法 调用栈的方式,先放入右子树的节点,再放入左子树的节点.
+	public void preOrderNR() {
+		Stack<Node> stack = new Stack<> ();
+		stack.push (root);
+		while (!stack.isEmpty ()) {
+			Node cur = stack.pop ();
+			System.out.println (cur.e);
+
+			if(cur.right!=null) {
+				stack.push (cur.right);
+			}
+			if(cur.left!=null){
+				stack.push (cur.left);
+			}
+		}
+	}
 	//中序遍历 遍历出的结果就是排序后的结果。
 	public void inOrder() {
 		inOrder (root);
 	}
 
 	private void inOrder(Node node) {
-		if(node==null){
+		if (node == null) {
 			return;
 		}
 
@@ -121,19 +141,41 @@ public class BST<E extends Comparable<E>> {
 		System.out.println (node.e);
 		inOrder (node.right);
 	}
+
 	//后序遍历
-	public void postOrder(){
+	public void postOrder() {
 		postOrder (root);
 	}
 
 	private void postOrder(Node root) {
-		if(root==null){
+		if (root == null) {
 			return;
 		}
 		postOrder (root.left);
 		postOrder (root.right);
 		System.out.println (root.e);
 	}
+
+	//层序遍历  广度优先遍历
+	//广度优先遍历意义:更快的找到问题的解,常用于算法设计中-  无权图 最短路径.
+	//图中也具有深度优先遍历和广度优先遍历
+	public void levelOrder(){
+		Queue<Node> q = new LinkedList<> ();
+		q.add (root);
+		while (!q.isEmpty ()){
+			Node cur = q.remove ();
+			System.out.println (cur.e);
+
+			if(cur.left!=null){
+				q.add (cur.left);
+			}
+			if(cur.right!=null){
+				q.add(cur.right);
+			}
+		}
+
+	}
+
 
 	@Override
 	public String toString() {
