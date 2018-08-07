@@ -79,8 +79,9 @@ public class BST<E extends Comparable<E>> {
 	}
 
 	//查看二分搜索树中是否包含元素e,递归算法
-	public void contains(E e) {
-		contains (root, e);
+	public boolean contains(E e) {
+		boolean contains = contains (root, e);
+		return  contains;
 	}
 
 	private boolean contains(Node node, E e) {
