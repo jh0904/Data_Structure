@@ -11,7 +11,7 @@ import java.util.Random;
  */
 public class Main {
 	public static void main(String[] args) {
-		int n = 1000000;
+		/*int n = 1000000;
 		MaxHeap<Integer> maxHeap = new MaxHeap<> ();
 		Random random = new Random ();
 		for (int i = 0; i < n; i++) {
@@ -26,6 +26,15 @@ public class Main {
 				throw new IllegalArgumentException ("error");
 			}
 		}
-		System.out.println ("success");
+		System.out.println ("success");*/
+
+		MaxHeap<Integer> maxHeap = new MaxHeap<> ();
+		Random random = new Random ();
+		for (int i = 0; i < 13; i++) {
+			maxHeap.add (random.nextInt (100));
+		}
+
+		Integer replace = maxHeap.replace (2);
+		System.out.println (replace);
 	}
 }
