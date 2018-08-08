@@ -143,6 +143,16 @@ public class Array<E> {
 		}
 	}
 
+	public void swap(int i,int j){
+		if(i<0||i>=size ||j<0||j>=size){
+			throw new IllegalArgumentException ("索引不合法·");
+		}
+		E t=data[i];
+		data[i]=data[j];
+		data[j]=t;
+	}
+
+
 	//动态数组
 
 	@Override
