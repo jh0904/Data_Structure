@@ -7,7 +7,7 @@ import java.util.TreeMap;
  *
  * @author jh
  * @date 2018/8/10 20:11
- * description:定义自己的Trie树
+ * description:定义自己的Trie树，与集合的长的无关，和查找的值的长度有关。
  */
 public class Trie {
 	private class Node {
@@ -51,18 +51,32 @@ public class Trie {
 			size++;
 		}
 	}
-	//查询一个单词
-	public boolean contains(String word){
 
-		Node cur=root;
+	//查询一个单词
+	public boolean contains(String word) {
+
+		Node cur = root;
 		for (int i = 0; i < word.length (); i++) {
 			char c = word.charAt (i);
-			if(cur.next.get (c)==null){
+			if (cur.next.get (c) == null) {
 				return false;
 			}
-			cur=cur.next.get (c);
+			cur = cur.next.get (c);
 		}
 		//查找到最后一个节点，看是否有这个单词（pan---> 平底锅 ||||||panda ---->熊猫）
 		return cur.isWord;
+	}
+
+	//前缀搜索 一个单词也是自己的前缀
+	public boolean isPrefix(String prefix){
+		Node cur=root;
+		for (int i = 0; i < prefix.length (); i++) {
+			char c = prefix.charAt (i);
+			if (cur.next.get (c) == null) {
+				return false;
+			}
+			cur = cur.next.get (c);
+		}
+		return true;
 	}
 }
