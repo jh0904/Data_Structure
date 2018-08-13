@@ -46,7 +46,6 @@ public class UnionFind2 implements UF {
 		if(pRoot==qRoot){
 			return;
 		}
-
 		parent[pRoot]=qRoot;
 	}
 }
