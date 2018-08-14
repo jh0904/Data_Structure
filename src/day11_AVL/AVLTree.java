@@ -35,6 +35,41 @@ public class AVLTree<K extends Comparable<K>, V> {
 		size = 0;
 	}
 
+	public boolean isBST() {
+		ArrayList<K> keys = new ArrayList<> ();
+		inOrder (root, keys);
+		for (int i = 1; i < keys.size (); i++) {
+			if (keys.get (i - 1).compareTo (keys.get (i)) > 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private void inOrder(Node root, ArrayList<K> keys) {
+		if (root == null) {
+			return;
+		}
+		inOrder (root.left, keys);
+		keys.add (root.key);
+		inOrder (root.right, keys);
+	}
+
+	public boolean isBalanced(){
+		return isBalanced (root);
+	}
+
+	private boolean isBalanced(Node node) {
+		if(node==null){
+			return true;
+		}
+		int balanceFactor=getBalanceFactor (node);
+		if(Math.abs (balanceFactor)>1){
+			return false;
+		}
+		return isBalanced (node.left) && isBalanced (node.right);
+	}
+
 	private int getHeight(Node node) {
 		if (node == null) {
 			return 0;
@@ -43,13 +78,14 @@ public class AVLTree<K extends Comparable<K>, V> {
 	}
 
 	//计算平衡因子
-	private int getBalanceFactor(Node node){
+	private int getBalanceFactor(Node node) {
 		if (node == null) {
 			return 0;
 		}
 
-		return getHeight (node.left)-getHeight (node.right);
+		return getHeight (node.left) - getHeight (node.right);
 	}
+
 	public int getSize() {
 		return size;
 	}
@@ -81,8 +117,8 @@ public class AVLTree<K extends Comparable<K>, V> {
 		//更新height
 		node.height = 1 + Math.max (getHeight (node.left), getHeight (node.right));
 		//设置平衡因子
-		int balanceFactor=getBalanceFactor (node);
-		if(Math.abs (balanceFactor)>1){
+		int balanceFactor = getBalanceFactor (node);
+		if (Math.abs (balanceFactor) > 1) {
 			System.out.println ("unbalanced : " + balanceFactor);
 		}
 		return node;
@@ -198,25 +234,25 @@ public class AVLTree<K extends Comparable<K>, V> {
 
 	public static void main(String[] args) {
 
-		System.out.println("Pride and Prejudice");
+		System.out.println ("Pride and Prejudice");
 
-		ArrayList<String> words = new ArrayList<>();
-		if(FileOperation.readFile("C:\\Users\\jh\\IdeaProjects\\Data_Structure\\src\\day06_SetAndHash\\pride-and-prejudice.txt", words)) {
-			System.out.println("Total words: " + words.size());
-
-			AVLTree<String, Integer> map = new AVLTree<>();
+		ArrayList<String> words = new ArrayList<> ();
+		if (FileOperation.readFile ("C:\\Users\\jh\\IdeaProjects\\Data_Structure\\src\\day06_SetAndHash\\pride-and-prejudice.txt", words)) {
+			System.out.println ("Total words: " + words.size ());
+			AVLTree<String, Integer> map = new AVLTree<> ();
 			for (String word : words) {
-				if (map.contains(word))
-					map.set(word, map.get(word) + 1);
+				if (map.contains (word))
+					map.set (word, map.get (word) + 1);
 				else
-					map.add(word, 1);
+					map.add (word, 1);
 			}
+			System.out.println ("Total different words: " + map.getSize ());
+			System.out.println ("Frequency of PRIDE: " + map.get ("pride"));
+			System.out.println ("Frequency of PREJUDICE: " + map.get ("prejudice"));
 
-			System.out.println("Total different words: " + map.getSize());
-			System.out.println("Frequency of PRIDE: " + map.get("pride"));
-			System.out.println("Frequency of PREJUDICE: " + map.get("prejudice"));
+			System.out.println ("is BST : " + map.isBST ());
+			System.out.println ("is Balanced : " + map.isBalanced ());
 		}
-
-		System.out.println();
+		System.out.println ();
 	}
 }
